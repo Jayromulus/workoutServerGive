@@ -7,6 +7,7 @@ var sequelize = require("./db");
 var bodyParser = require("body-parser");
 
 var user = require("./controllers/usercontroller");
+let log = require("./controllers/logcontroller")
 
 sequelize.sync();
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use("/test-controller", test);
 
 app.use(require("./middleware/validate-session"));
 
+app.use("/api", log)
 app.use("/authtest", authTest);
 
 app.listen(process.env.PORT, function() {
